@@ -1,0 +1,10 @@
+[
+  {
+    "keyword": "Microsoft",
+    "url": "https://packages.microsoft.com/keys/microsoft.asc"
+  },
+  {
+    "keyword": "RPM Fusion",
+    "url": "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020"
+  }
+]
