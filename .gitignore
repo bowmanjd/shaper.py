@@ -1,2 +1,3 @@
 *playbook*.py
+!playbook-sample.py
 __pycache__
