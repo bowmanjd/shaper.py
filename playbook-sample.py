@@ -4,8 +4,7 @@
 import shaper.dnf
 import shaper.npm
 import shaper.fonts
-
-SSH_SECRET_REPO = "my_username_or_org/private_repo_with_ssh_keys.git"
+import mysecrets.py
 
 shaper.dnf.install_rpm_keys()
 shaper.dnf.install_dnf_repos()
