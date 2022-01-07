@@ -73,7 +73,7 @@ def install_copr_repos() -> None:
     possible_repositories = shaper.util.get_set_from_file("dnf_copr_repos.txt")
     to_install = possible_repositories - existing_copr_repos()
     if to_install:
-        subprocess.check_call([*DNF, "copr", "enable", " ".join(to_install)])
+        subprocess.check_call([*DNF, "copr", "enable", "-y", *to_install])
 
 
 def install_dnf_repos() -> None:
