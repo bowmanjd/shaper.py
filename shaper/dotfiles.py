@@ -1,6 +1,7 @@
 import os
 import pathlib
 import subprocess
+import tempfile
 
 
 HOME = pathlib.Path.home()
@@ -70,8 +71,8 @@ def dotfile_git_clone(module: str, url: str) -> None:
     """
     git_dir = DOTFILES / module
     with tempfile.TemporaryDirectory(prefix="dtf-") as tmpdirname:
-        subprocess.check_call("git", "clone", "-c", "status.showUntrackedFiles=no",
-                              "-n", "--separate-git-dir", git_dir, url, tmpdirname)
+        subprocess.check_call(["git", "clone", "-c", "status.showUntrackedFiles=no",
+                              "-n", "--separate-git-dir", git_dir, url, tmpdirname])
 
 
 def dotfile_git_restore(module: str, url: str) -> None:

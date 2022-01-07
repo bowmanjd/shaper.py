@@ -11,7 +11,7 @@ def install_volta() -> None:
     shaper.download.install_with_remote_script("volta", "https://get.volta.sh", ["--skip-setup"])
     try:
         subprocess.check_output(["node", "-v"])
-    except subprocess.CalledProcessError:
+    except (subprocess.CalledProcessError, FileNotFoundError):
         subprocess.check_call(["volta", "install", "node"])
 
 def existing_npm() -> set:
@@ -21,7 +21,11 @@ def existing_npm() -> set:
         a set of package names
     """
     command = ["volta", "list", "--format", "plain"]
-    lines = shaper.util.get_set_from_output(command)
+
+    try:
+        lines = shaper.util.get_set_from_output(command)
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        lines = set()
 
     return {l.split()[1].split("@")[0] for l in lines if l.startswith("package")}
 
