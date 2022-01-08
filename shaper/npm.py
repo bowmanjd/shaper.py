@@ -30,8 +30,12 @@ def existing_npm() -> set:
     return {l.split()[1].split("@")[0] for l in lines if l.startswith("package")}
 
 
-def install_npm_packages() -> None:
-    """Install npm packages from text file."""
+def install_npm_packages(filename: str) -> None:
+    """Install npm packages from text file.
+    
+    Args:
+        filename: path to text file listing packages
+    """
     install_volta()
     to_install = shaper.util.get_set_from_file("npm.txt")
     existing = existing_npm()

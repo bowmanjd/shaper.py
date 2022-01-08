@@ -43,9 +43,13 @@ def install_rpm_key(keyword: str, url: str) -> None:
         command = [*RPM, "--import", url]
         subprocess.check_call(command)
 
-def install_rpm_keys() -> None:
-    """Install rpm gpg keys from file."""
-    keys = json.loads(pathlib.Path("rpm_keys.json").read_text())
+def install_rpm_keys(filename: str) -> None:
+    """Install rpm gpg keys from file.
+    
+    Args:
+        filename: path to text file listing repos
+    """
+    keys = json.loads(pathlib.Path(filename).read_text())
     for key in keys:
         install_rpm_key(**key)
 
@@ -68,17 +72,25 @@ def existing_dnf_repos() -> set:
     return {r.baseurl[0] for r in dnf_base().repos.values() if r.baseurl}
 
 
-def install_copr_repos() -> None:
-    """Install copr repositories from file."""
-    possible_repositories = shaper.util.get_set_from_file("dnf_copr_repos.txt")
+def install_copr_repos(filename: str) -> None:
+    """Install copr repositories from file.
+    
+    Args:
+        filename: path to text file listing repos
+    """
+    possible_repositories = shaper.util.get_set_from_file(filename)
     to_install = possible_repositories - existing_copr_repos()
     if to_install:
         subprocess.check_call([*DNF, "copr", "enable", "-y", *to_install])
 
 
-def install_dnf_repos() -> None:
-    """Install dnf repositories from file."""
-    possible_urls = shaper.util.get_set_from_file("dnf_repos.txt")
+def install_dnf_repos(filename: str) -> None:
+    """Install dnf repositories from file.
+    
+    Args:
+        filename: path to text file listing repos
+    """
+    possible_urls = shaper.util.get_set_from_file(filename)
     to_install = possible_urls - existing_dnf_repos()
     if to_install:
         subprocess.check_call([*DNF, "config-manager", "--add-repo", " ".join(to_install)])
@@ -105,8 +117,12 @@ def existing_dnf() -> set:
     return shaper.util.get_set_from_output(command)
 
 
-def install_dnf_packages() -> None:
-    """Install packages from text file using dnf."""
+def install_dnf_packages(filename: str) -> None:
+    """Install packages from text file using dnf.
+    
+    Args:
+        filename: path to text file listing repos
+    """
     to_install = shaper.util.get_set_from_file("dnf_packages.txt")
     existing = existing_dnf()
     new_packages = to_install - existing
