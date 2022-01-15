@@ -30,9 +30,9 @@ def install_font(url: str) -> None:
     shaper.download.download(url, HOME / ".local/share/fonts")
 
 
-def install_fonts() -> None:
+def install_fonts(filename: str) -> None:
     """Install font URLs from file."""
-    possible_fonts = {urllib.parse.unquote(pathlib.Path(f).stem): f for f in shaper.util.get_set_from_file('fonts.txt')}
+    possible_fonts = {urllib.parse.unquote(pathlib.Path(f).stem): f for f in shaper.util.get_set_from_file(filename)}
     to_install = set(possible_fonts) - existing_fonts()
     for font in to_install:
         install_font(possible_fonts[font])

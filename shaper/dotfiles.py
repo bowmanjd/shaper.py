@@ -70,6 +70,7 @@ def dotfile_git_clone(module: str, url: str) -> None:
         url: repo URL
     """
     git_dir = DOTFILES / module
+    DOTFILES.mkdir(parents=True, exist_ok=True)    
     with tempfile.TemporaryDirectory(prefix="dtf-") as tmpdirname:
         subprocess.check_call(["git", "clone", "-c", "status.showUntrackedFiles=no",
                               "-n", "--separate-git-dir", git_dir, url, tmpdirname])
@@ -82,10 +83,12 @@ def dotfile_git_restore(module: str, url: str) -> None:
         module: name of bare repo, such as base, or wayland
         url: repo URL
     """
-    try:
-        dotfile_git_clone(module, url)
-        dotfile_git(module, ["checkout"])
-    except subprocess.CalledProcessError:
-        print("Deal with conflicting files, then run (possibly with -f "
-             f"flag if you are OK with overwriting)\ndtf {module} checkout")
+    git_dir = DOTFILES / module
+    if not (git_dir / ".git").is_dir():
+        try:
+            dotfile_git_clone(module, url)
+            dotfile_git(module, ["checkout"])
+        except subprocess.CalledProcessError:
+            print("Deal with conflicting files, then run (possibly with -f "
+                 f"flag if you are OK with overwriting)\ndtf {module} checkout")
 

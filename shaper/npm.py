@@ -1,5 +1,8 @@
 """Utility functions for managing node packages."""
 
+import os
+import pathlib
+import shlex
 import subprocess
 import shaper.download
 import shaper.util
@@ -9,6 +12,9 @@ NPM = ["volta", "run", "--npm", "latest", "npm"]
 def install_volta() -> None:
     """Install volta if missing, and set up node and npm."""
     shaper.download.install_with_remote_script("volta", "https://get.volta.sh", ["--skip-setup"])
+    HOME = pathlib.Path.home()
+    os.environ.update({"VOLTA_HOME": f"{HOME}/.volta", "PATH": f"{HOME}/.volta/bin:{os.environ.get('PATH')}"})
+    print(os.environ.get("PATH"))
     try:
         subprocess.check_output(["node", "-v"])
     except (subprocess.CalledProcessError, FileNotFoundError):
@@ -37,7 +43,7 @@ def install_npm_packages(filename: str) -> None:
         filename: path to text file listing packages
     """
     install_volta()
-    to_install = shaper.util.get_set_from_file("npm.txt")
+    to_install = shaper.util.get_set_from_file(filename)
     existing = existing_npm()
     cmd = [*NPM, "install", "--global"]
     new_packages = to_install - existing

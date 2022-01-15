@@ -123,7 +123,7 @@ def install_dnf_packages(filename: str) -> None:
     Args:
         filename: path to text file listing repos
     """
-    to_install = shaper.util.get_set_from_file("dnf_packages.txt")
+    to_install = shaper.util.get_set_from_file(filename)
     existing = existing_dnf()
     new_packages = to_install - existing
     if new_packages:

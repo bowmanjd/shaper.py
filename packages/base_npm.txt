@@ -1,2 +1,7 @@
+@dprint/formatter
+@dprint/sql
+dprint
+poor-mans-t-sql-formatter-cli
 prettier
 pyright
+tsqllint
