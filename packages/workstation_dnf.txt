@@ -7,6 +7,7 @@ bemenu
 bottles
 buildah
 calibre
+distrobox
 dwarffortress
 enscript
 fd-find
