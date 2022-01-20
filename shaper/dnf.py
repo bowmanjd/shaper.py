@@ -43,9 +43,10 @@ def install_rpm_key(keyword: str, url: str) -> None:
         command = [*RPM, "--import", url]
         subprocess.check_call(command)
 
+
 def install_rpm_keys(filename: str) -> None:
     """Install rpm gpg keys from file.
-    
+
     Args:
         filename: path to text file listing repos
     """
@@ -60,7 +61,11 @@ def existing_copr_repos() -> set:
     Returns:
         a set of repo names
     """
-    return {"/".join(k.split(":")[2:]) for k in dnf_base().repos.keys() if k.startswith("copr")}
+    return {
+        "/".join(k.split(":")[2:])
+        for k in dnf_base().repos.keys()
+        if k.startswith("copr")
+    }
 
 
 def existing_dnf_repos() -> set:
@@ -74,7 +79,7 @@ def existing_dnf_repos() -> set:
 
 def install_copr_repos(filename: str) -> None:
     """Install copr repositories from file.
-    
+
     Args:
         filename: path to text file listing repos
     """
@@ -86,25 +91,32 @@ def install_copr_repos(filename: str) -> None:
 
 def install_dnf_repos(filename: str) -> None:
     """Install dnf repositories from file.
-    
+
     Args:
         filename: path to text file listing repos
     """
     possible_urls = shaper.util.get_set_from_file(filename)
     to_install = possible_urls - existing_dnf_repos()
     if to_install:
-        subprocess.check_call([*DNF, "config-manager", "--add-repo", " ".join(to_install)])
+        subprocess.check_call(
+            [*DNF, "config-manager", "--add-repo", " ".join(to_install)]
+        )
 
 
 def install_rpmfusion() -> None:
     """Install rpmfusion repositories."""
-    if not {"rpmfusion-free-release", "rpmfusion-nonfree-release"}.issubset(existing_dnf()):
-        subprocess.check_call([*DNF,
-            "install",
-            "-y",
-            f"https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{FEDORA_VERSION}.noarch.rpm",
-            f"https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{FEDORA_VERSION}.noarch.rpm",
-            ])
+    if not {"rpmfusion-free-release", "rpmfusion-nonfree-release"}.issubset(
+        existing_dnf()
+    ):
+        subprocess.check_call(
+            [
+                *DNF,
+                "install",
+                "-y",
+                f"https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{FEDORA_VERSION}.noarch.rpm",
+                f"https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{FEDORA_VERSION}.noarch.rpm",
+            ]
+        )
 
 
 def existing_dnf() -> set:
@@ -119,7 +131,7 @@ def existing_dnf() -> set:
 
 def install_dnf_packages(filename: str) -> None:
     """Install packages from text file using dnf.
-    
+
     Args:
         filename: path to text file listing repos
     """

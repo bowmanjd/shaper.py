@@ -29,6 +29,7 @@ python3-pip
 qrencode
 ripgrep
 skopeo
+starship
 sudo
 tar
 unzip
