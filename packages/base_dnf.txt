@@ -30,6 +30,7 @@ python3-pynacl
 qrencode
 ripgrep
 skopeo
+starship
 sudo
 tar
 unzip
