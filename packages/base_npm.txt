@@ -1,7 +1,7 @@
-@dprint/formatter
-@dprint/sql
-dprint
+bash-language-server
 poor-mans-t-sql-formatter-cli
 prettier
 pyright
+quick-lint-js
 tsqllint
+vscode-langservers-extracted
