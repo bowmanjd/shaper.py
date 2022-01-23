@@ -12,7 +12,9 @@ def run() -> None:
     """Run commands in order."""
     shaper.dnf.install_dnf_packages("packages/base_dnf.txt")
     shaper.npm.install_npm_packages("packages/base_npm.txt")
-    shaper.download.install_with_remote_script("rustup", "https://sh.rustup.rs")
+    shaper.download.install_with_remote_script(
+        "rustup", "https://sh.rustup.rs", ["-y", "--no-modify-path"]
+    )
     shaper.dotfiles.dotfile_git_restore(
         "base", "git@github.com:bowmanjd/dotfiles-base.git"
     )

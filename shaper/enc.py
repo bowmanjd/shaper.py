@@ -1,24 +1,36 @@
-from nacl import pwhash, secret, utils
+import base64
+
+from nacl import pwhash
+from nacl import secret
+from nacl import utils
 
 OPS = pwhash.argon2i.OPSLIMIT_MODERATE
 MEM = pwhash.argon2i.MEMLIMIT_MODERATE
+kdf = pwhash.argon2i.kdf
+
 
 def encrypt(password: str, plaintext: str) -> bytes:
-    kdf = pwhash.argon2i.kdf
     salt = utils.random(pwhash.argon2i.SALTBYTES)
 
-    key = kdf(secret.SecretBox.KEY_SIZE, password.encode(), salt,
-                 opslimit=OPS, memlimit=MEM)
+    key = kdf(
+        secret.SecretBox.KEY_SIZE, password.encode(), salt, opslimit=OPS, memlimit=MEM
+    )
     box = secret.SecretBox(key)
     nonce = utils.random(secret.SecretBox.NONCE_SIZE)
 
     ciphertext = box.encrypt(plaintext.encode(), nonce)
-    return salt + ciphertext
+    return base64.b64encode(salt + ciphertext)
+
 
 def decrypt(password: str, ciphertext: bytes) -> str:
-    key = kdf(secret.SecretBox.KEY_SIZE, password.encode(), salt,
-               opslimit=ops, memlimit=mem)
-Bobs_box = secret.SecretBox(Bobs_key)
-received = Bobs_box.decrypt(encrypted)
-print(received.decode('utf-8'))
-
+    payload = base64.b64decode(ciphertext)
+    salt, cipherbytes = (
+        payload[: pwhash.argon2i.SALTBYTES],
+        payload[pwhash.argon2i.SALTBYTES :],
+    )
+    key = kdf(
+        secret.SecretBox.KEY_SIZE, password.encode(), salt, opslimit=OPS, memlimit=MEM
+    )
+    box = secret.SecretBox(key)
+    received = box.decrypt(cipherbytes)
+    return received.decode()

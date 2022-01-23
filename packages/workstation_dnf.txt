@@ -53,6 +53,8 @@ qrencode
 qt5-qtbase-devel
 ripgrep
 skopeo
+spice-gtk
+spice-gtk-tools
 sway
 toolbox
 vim-enhanced
