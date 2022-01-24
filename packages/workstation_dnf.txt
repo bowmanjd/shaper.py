@@ -22,6 +22,7 @@ imv
 inkscape
 java-latest-openjdk
 jq
+kitty
 libsoundio
 libzip
 libzip-devel
@@ -55,6 +56,8 @@ ripgrep
 skopeo
 spice-gtk
 spice-gtk-tools
+spice-vdagent
+spice-webdavd
 sway
 toolbox
 vim-enhanced
@@ -65,4 +68,5 @@ wine-devel
 wine-mono
 wine-times-new-roman-fonts
 winetricks
+wl-clipboard
 youtube-dl
