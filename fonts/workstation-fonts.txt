@@ -8,3 +8,5 @@ https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Bold/c
 https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Inconsolata/complete/Inconsolata%20Regular%20Nerd%20Font%20Complete.otf
 https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/Regular/complete/Iosevka%20Term%20Nerd%20Font%20Complete.ttf
 https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete.ttf
+https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Arimo/Regular/complete/Arimo%20Regular%20Nerd%20Font%20Complete.ttf
+https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Gohu/uni-14/complete/GohuFont%20Nerd%20Font%20Complete.ttf

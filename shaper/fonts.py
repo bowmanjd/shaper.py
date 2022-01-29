@@ -1,7 +1,8 @@
 """Utility functions for managing fonts."""
-
 import pathlib
+import subprocess
 import urllib.parse
+
 import shaper.download
 import shaper.util
 
@@ -32,7 +33,10 @@ def install_font(url: str) -> None:
 
 def install_fonts(filename: str) -> None:
     """Install font URLs from file."""
-    possible_fonts = {urllib.parse.unquote(pathlib.Path(f).stem): f for f in shaper.util.get_set_from_file(filename)}
+    possible_fonts = {
+        urllib.parse.unquote(pathlib.Path(f).stem): f
+        for f in shaper.util.get_set_from_file(filename)
+    }
     to_install = set(possible_fonts) - existing_fonts()
     for font in to_install:
         install_font(possible_fonts[font])
