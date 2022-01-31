@@ -3,6 +3,7 @@ buildah
 coreutils
 cracklib-dicts
 diffutils
+exa
 fd-find
 findutils
 g++
