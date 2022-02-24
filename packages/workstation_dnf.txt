@@ -76,3 +76,5 @@ wine-times-new-roman-fonts
 winetricks
 wl-clipboard
 youtube-dl
+edk2-aarch64
+qemu-system-aarch64
