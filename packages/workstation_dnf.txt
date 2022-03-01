@@ -9,11 +9,13 @@ buildah
 calibre
 distrobox
 dwarffortress
+edk2-aarch64
 enscript
 fd-find
 flameshot
 fontawesome5-fonts-all
 freeciv
+fuse-encfs
 gimp
 google-chrome-stable
 htop
@@ -27,6 +29,7 @@ libguestfs
 libsoundio
 libzip
 libzip-devel
+light
 lxc
 lxc-templates
 microsoft-edge-beta
@@ -42,6 +45,7 @@ openssl-devel
 openttd
 p7zip
 p7zip-plugins
+pam_mount
 perl-Compress-Raw-Zlib
 perl-HTML-Parser
 perl-HTTP-Cookies
@@ -53,6 +57,7 @@ perl-Time-HiRes
 perl-Time-Piece
 python3-neovim
 python3-pexpect
+qemu-system-aarch64
 qemu-user
 qemu-user-binfmt
 qemu-user-static
@@ -75,6 +80,6 @@ wine-mono
 wine-times-new-roman-fonts
 winetricks
 wl-clipboard
+wob
 youtube-dl
-edk2-aarch64
-qemu-system-aarch64
+zeal

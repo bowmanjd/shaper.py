@@ -1,4 +1,5 @@
 bash-language-server
+degit
 poor-mans-t-sql-formatter-cli
 prettier
 pyright
