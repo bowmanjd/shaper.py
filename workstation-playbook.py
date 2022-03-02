@@ -13,6 +13,7 @@ def run() -> None:
     shaper.dnf.install_copr_repos("repos/workstation_copr_repos.txt")
     shaper.dnf.install_rpmfusion()
     shaper.dnf.install_dnf_packages("packages/base_dnf.txt")
+    shaper.dnf.install_dnf_packages("packages/workstation_dnf.txt")
     shaper.npm.install_npm_packages("packages/base_npm.txt")
     shaper.fonts.install_fonts("fonts/workstation-fonts.txt")
     shaper.download.install_with_remote_script(

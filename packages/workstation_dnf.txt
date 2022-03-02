@@ -7,6 +7,7 @@ bemenu
 bottles
 buildah
 calibre
+clipman
 distrobox
 dwarffortress
 edk2-aarch64
@@ -16,6 +17,7 @@ flameshot
 fontawesome5-fonts-all
 freeciv
 fuse-encfs
+fzf
 gimp
 google-chrome-stable
 htop
