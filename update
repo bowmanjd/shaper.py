@@ -2,3 +2,4 @@
 
 sudo dnf update --refresh -y
 volta run --npm latest npm update --global
+~/.venv/bin/pip install -Ur ./packages/base_pip.txt

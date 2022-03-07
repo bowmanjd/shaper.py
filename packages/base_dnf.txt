@@ -3,11 +3,12 @@ buildah
 coreutils
 cracklib-dicts
 diffutils
+direnv
 exa
 fd-find
 findutils
-g++
 gcc
+gcc-c++
 git
 htop
 iproute

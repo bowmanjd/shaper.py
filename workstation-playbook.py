@@ -2,8 +2,11 @@
 """Script for full Linux graphical workstation."""
 import shaper.dnf
 import shaper.dotfiles
+import shaper.download
 import shaper.fonts
+import shaper.localpy
 import shaper.npm
+import shaper.rust
 
 
 def run() -> None:
@@ -13,6 +16,7 @@ def run() -> None:
     shaper.dnf.install_copr_repos("repos/workstation_copr_repos.txt")
     shaper.dnf.install_rpmfusion()
     shaper.dnf.install_dnf_packages("packages/base_dnf.txt")
+    shaper.dnf.install_dnf_packages("packages/workstation_dnf.txt")
     shaper.npm.install_npm_packages("packages/base_npm.txt")
     shaper.fonts.install_fonts("fonts/workstation-fonts.txt")
     shaper.download.install_with_remote_script(
@@ -27,6 +31,8 @@ def run() -> None:
     shaper.dotfiles.dotfile_git_restore(
         "workstation", "git@github.com:bowmanjd/dotfiles-workstation.git"
     )
+    shaper.localpy.install_pip_packages("packages/base_pip.txt")
+    shaper.rust.install_rust_packages("packages/base_rust.txt")
 
 
 if __name__ == "__main__":

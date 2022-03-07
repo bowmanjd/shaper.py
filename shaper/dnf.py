@@ -1,10 +1,10 @@
 """Utility functions for managing packages and repos with dnf."""
-
-import dnf
 import functools
 import json
 import pathlib
 import subprocess
+
+import dnf
 
 import shaper.util
 
@@ -125,7 +125,7 @@ def existing_dnf() -> set:
     Returns:
         a set of package names
     """
-    command = ["dnf", "repoquery", "--userinstalled", "--queryformat", "%{name}"]
+    command = ["dnf", "repoquery", "--installed", "--queryformat", "%{name}"]
     return shaper.util.get_set_from_output(command)
 
 
