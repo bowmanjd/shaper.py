@@ -5,7 +5,7 @@ import shaper.util
 
 
 def existing_rust() -> set:
-    """Obtain list of installed python packages.
+    """Obtain list of installed rust packages.
 
     Returns:
         a set of package names
@@ -16,7 +16,7 @@ def existing_rust() -> set:
 
 
 def install_rust_packages(filename: str) -> None:
-    """Install python packages from text file.
+    """Install rust packages from text file.
 
     Args:
         filename: path to text file listing packages
