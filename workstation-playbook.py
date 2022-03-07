@@ -2,8 +2,11 @@
 """Script for full Linux graphical workstation."""
 import shaper.dnf
 import shaper.dotfiles
+import shaper.download
 import shaper.fonts
+import shaper.localpy
 import shaper.npm
+import shaper.rust
 
 
 def run() -> None:
@@ -28,6 +31,8 @@ def run() -> None:
     shaper.dotfiles.dotfile_git_restore(
         "workstation", "git@github.com:bowmanjd/dotfiles-workstation.git"
     )
+    shaper.localpy.install_pip_packages("packages/base_pip.txt")
+    shaper.rust.install_rust_packages("packages/base_rust.txt")
 
 
 if __name__ == "__main__":

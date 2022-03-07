@@ -1,2 +1,12 @@
-*secret*
-__pycache__
+*dud*
+
+__pycache__/
+*.py[cod]
+.mypy_cache/
+*.egg-info/
+build/
+venv/
+.venv/
+.coverage
+.tox/
+htmlcov/
