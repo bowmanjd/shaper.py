@@ -1,4 +1,6 @@
 black
+cli-helpers
+csvkit
 darglint
 flake8-bandit
 flake8-bugbear
@@ -8,6 +10,7 @@ flake8-docstrings
 flake8-eradicate
 flake8-isort
 flake8-pytest-style
+git+https://github.com/bowmanjd/mssql-scripter
 iflake8
 isort
 mssql-cli
