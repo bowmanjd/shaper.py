@@ -1,5 +1,4 @@
 black
-cli-helpers
 csvkit
 darglint
 flake8-bandit
@@ -14,6 +13,7 @@ git+https://github.com/bowmanjd/mssql-scripter
 iflake8
 isort
 mssql-cli
+cli-helpers
 pep8-naming
 pip
 ptpython

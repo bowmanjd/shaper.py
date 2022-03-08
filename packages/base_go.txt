@@ -1,2 +1,3 @@
 github.com/lighttiger2505/sqls
+github.com/nao1215/gup
 golang.org/x/website/tour
