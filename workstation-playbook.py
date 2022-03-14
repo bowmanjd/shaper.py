@@ -4,6 +4,7 @@ import shaper.dnf
 import shaper.dotfiles
 import shaper.download
 import shaper.fonts
+import shaper.golang
 import shaper.localpy
 import shaper.npm
 import shaper.rust
@@ -17,7 +18,7 @@ def run() -> None:
     shaper.dnf.install_rpmfusion()
     shaper.dnf.install_dnf_packages("packages/base_dnf.txt")
     shaper.dnf.install_dnf_packages("packages/workstation_dnf.txt")
-    shaper.npm.install_npm_packages("packages/base_npm.txt")
+    shaper.localpy.install_pip_packages("packages/base_pip.txt")
     shaper.fonts.install_fonts("fonts/workstation-fonts.txt")
     shaper.download.install_with_remote_script(
         "rustup", "https://sh.rustup.rs", ["-y", "--no-modify-path"]
@@ -31,7 +32,8 @@ def run() -> None:
     shaper.dotfiles.dotfile_git_restore(
         "workstation", "git@github.com:bowmanjd/dotfiles-workstation.git"
     )
-    shaper.localpy.install_pip_packages("packages/base_pip.txt")
+    shaper.npm.install_npm_packages("packages/base_npm.txt")
+    shaper.golang.install_go_packages("packages/base_go.txt")
     shaper.rust.install_rust_packages("packages/base_rust.txt")
 
 
