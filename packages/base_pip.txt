@@ -7,13 +7,11 @@ flake8-builtins
 flake8-comprehensions
 flake8-docstrings
 flake8-eradicate
-flake8-isort
 flake8-pytest-style
+git+https://github.com/bowmanjd/mssql-cli
 git+https://github.com/bowmanjd/mssql-scripter
 iflake8
 isort
-mssql-cli
-cli-helpers
 pep8-naming
 pip
 ptpython
