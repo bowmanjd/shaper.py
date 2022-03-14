@@ -1,3 +1,2 @@
 alciregi/distrobox
 alebastr/sway-extras
-elxreno/multimc
