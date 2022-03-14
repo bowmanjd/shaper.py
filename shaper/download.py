@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Utility functions for downloading files."""
-import functools
 import hashlib
 import json
 import pathlib
@@ -8,6 +7,8 @@ import subprocess
 import typing
 import urllib.parse
 import urllib.request
+
+CHUNK_SIZE = 32768
 
 
 class SafeOpener(urllib.request.OpenerDirector):
@@ -66,10 +67,39 @@ def download(url: str, destination: pathlib.Path) -> pathlib.Path:
     response = opener.open(url)
     destination.parent.mkdir(parents=True, exist_ok=True)
     with destination.open("wb") as dest_file:
-        for data in iter(functools.partial(response.read, 32768), b""):
-            dest_file.write(data)
+        while chunk := response.read(CHUNK_SIZE):
+            dest_file.write(chunk)
     print(f"Downloaded {destination}")
     return destination
+
+
+def untar(
+    filepath: pathlib.Path,
+    destination: pathlib.Path,
+    sudo: bool = False,
+    overwrite: bool = True,
+) -> None:
+    """Unpack file path using GNU tar.
+
+    Args:
+        filepath: path to tar file
+        destination: directory to unpack into
+        sudo: will elevate if True
+        overwrite: delete files/directories first if True
+    """
+    cmd = [
+        "tar",
+        "-x",
+        "-C",
+        destination,
+        "-f",
+        filepath,
+    ]
+    if sudo:
+        cmd.insert(0, "sudo")
+    if overwrite:
+        cmd.append("--recursive-unlink")
+    subprocess.check_call(cmd)
 
 
 def install_with_remote_script(
@@ -103,7 +133,7 @@ def hashsum(filepath: pathlib.Path, algorithm: str = "sha256") -> str:
     """
     hash = hashlib.new(algorithm)
     with filepath.open("rb") as file_handle:
-        while chunk := file_handle.read(8192):
+        while chunk := file_handle.read(CHUNK_SIZE):
             hash.update(chunk)
     return hash.hexdigest()
 
