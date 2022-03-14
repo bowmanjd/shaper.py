@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Utility functions for downloading files."""
 import functools
-import os
+import hashlib
+import json
 import pathlib
 import subprocess
 import typing
@@ -10,7 +11,14 @@ import urllib.request
 
 
 class SafeOpener(urllib.request.OpenerDirector):
-    def __init__(self, handlers: typing.Iterable = None):
+    """URL opener with fewer handlers."""
+
+    def __init__(self, handlers: typing.Optional[typing.Iterable] = None):
+        """Use only a subset of handlers.
+
+        Args:
+            handlers: optional list of handlers
+        """
         super().__init__()
         handlers = handlers or (
             urllib.request.UnknownHandler,
@@ -27,12 +35,28 @@ class SafeOpener(urllib.request.OpenerDirector):
 opener = SafeOpener()
 
 
-def download(url: str, destination: os.PathLike) -> None:
+def json_get(url: str) -> typing.Union[dict, list, str]:
+    """Pull JSON data from a url.
+
+    Args:
+        url: URL of JSON response
+
+    Returns:
+        JSON object
+    """
+    response = opener.open(url)
+    return json.load(response)
+
+
+def download(url: str, destination: pathlib.Path) -> pathlib.Path:
     """Copy data from a url to a local file.
 
     Args:
         url: URL of file to be downloaded
         destination: optional path of destination file
+
+    Returns:
+        Downloaded file path
     """
     print(f"Requesting {url}")
     if destination.is_dir() or not destination.suffix:
@@ -45,9 +69,12 @@ def download(url: str, destination: os.PathLike) -> None:
         for data in iter(functools.partial(response.read, 32768), b""):
             dest_file.write(data)
     print(f"Downloaded {destination}")
+    return destination
 
 
-def install_with_remote_script(command: str, url: str, extra: list = []) -> None:
+def install_with_remote_script(
+    command: str, url: str, extra: typing.Iterable = ()
+) -> None:
     """Install using downloadable script if not installed already.
 
     Args:
@@ -56,16 +83,30 @@ def install_with_remote_script(command: str, url: str, extra: list = []) -> None
         extra: list of extra arguments to pass to script
     """
     try:
-        subprocess.check_output(["which", command])
+        subprocess.check_call(["command", "-v", command])
     except subprocess.CalledProcessError:
         print(f"Requesting {url}")
         response = opener.open(url)
         script = response.read()
-        #        script = subprocess.check_output(
-        #            [
-        #                "curl",
-        #                "-fsSL",
-        #                url,
-        #            ]
-        #        )
         subprocess.check_call(["/bin/bash", "-c", script, "--", *extra])
+
+
+def hashsum(filepath: pathlib.Path, algorithm: str = "sha256") -> str:
+    """Compute hash checksum of file.
+
+    Args:
+        filepath: path to file
+        algorithm: hashing algorithm
+
+    Returns:
+        hexadecimal hash string
+    """
+    hash = hashlib.new(algorithm)
+    with filepath.open("rb") as file_handle:
+        while chunk := file_handle.read(8192):
+            hash.update(chunk)
+    return hash.hexdigest()
+
+
+if __name__ == "__main__":
+    print(json_get("https://go.dev/dl/?mode=json"))
