@@ -6,6 +6,7 @@ import shaper.download
 import shaper.fonts
 import shaper.golang
 import shaper.localpy
+import shaper.minecraft
 import shaper.npm
 import shaper.rust
 
@@ -35,6 +36,7 @@ def run() -> None:
     shaper.npm.install_npm_packages("packages/base_npm.txt")
     shaper.golang.install_go_packages("packages/base_go.txt")
     shaper.rust.install_rust_packages("packages/base_rust.txt")
+    shaper.minecraft.multimc_update()
 
 
 if __name__ == "__main__":

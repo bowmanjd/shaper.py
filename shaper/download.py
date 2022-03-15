@@ -64,7 +64,13 @@ def download(url: str, destination: pathlib.Path) -> pathlib.Path:
         destination = destination.joinpath(
             urllib.parse.unquote(pathlib.PurePosixPath(url).name)
         )
-    response = opener.open(url)
+    request = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0"
+        },
+    )
+    response = opener.open(request)
     destination.parent.mkdir(parents=True, exist_ok=True)
     with destination.open("wb") as dest_file:
         while chunk := response.read(CHUNK_SIZE):
