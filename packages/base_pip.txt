@@ -1,4 +1,5 @@
 black
+cchardet
 csvkit
 darglint
 flake8-bandit
@@ -15,9 +16,11 @@ isort
 pep8-naming
 pip
 ptpython
+pylightxl
 pynvim
 pytest
 reorder-python-imports
 setuptools
 virtualenv
+visidata
 wheel

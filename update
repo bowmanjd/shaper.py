@@ -1,8 +1,10 @@
 #!/bin/sh
 
+SHAPER_DIR="$(dirname $0)"
+
 sudo dnf update --refresh -y
 volta run --npm latest npm update --global
-~/.venv/bin/pip install -Ur ./packages/base_pip.txt
+~/.venv/bin/pip install -Ur "$SHAPER_DIR/packages/base_pip.txt"
 ~/.venv/bin/virtualenv --upgrade-embed-wheels
 rustup update
 cargo install-update -a

@@ -25,8 +25,8 @@ def install_rust_packages(filename: str) -> None:
     to_install = shaper.util.get_set_from_file(filename)
     new_packages = to_install - existing
 
-    if new_packages:
-        cmd = ["cargo", "install", " ".join(new_packages)]
+    for package in new_packages:
+        cmd = ["cargo", "install", package]
         subprocess.check_call(cmd)
 
 
