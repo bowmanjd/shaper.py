@@ -1,11 +1,11 @@
 """Utility functions for managing local Go packages."""
 import platform
-import shaper.download
-import shaper.util
 import subprocess
-import tarfile
 import tempfile
 from pathlib import Path
+
+import shaper.download
+import shaper.util
 
 GOPATH = Path.home() / "go" / "bin"
 GOROOT = Path("/usr/local/go")
