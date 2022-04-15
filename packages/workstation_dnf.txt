@@ -21,6 +21,7 @@ enscript
 fd-find
 flameshot
 fontawesome5-fonts-all
+foot
 freeciv
 fuse-encfs
 fzf
