@@ -9,6 +9,7 @@ flake8-comprehensions
 flake8-docstrings
 flake8-eradicate
 flake8-pytest-style
+fonttools[lxml,woff]
 git+https://github.com/bowmanjd/mssql-cli
 git+https://github.com/bowmanjd/mssql-scripter
 iflake8
