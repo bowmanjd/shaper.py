@@ -1,7 +1,6 @@
 cargo-update
 deno
 dprint
-rome
 stylua
 xsv
 csvlens
