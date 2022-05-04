@@ -1,7 +1,9 @@
+ansible
 black
 cchardet
 csvkit
 darglint
+docker
 flake8-bandit
 flake8-bugbear
 flake8-builtins

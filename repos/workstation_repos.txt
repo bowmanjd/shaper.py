@@ -1,1 +1,2 @@
 https://packages.microsoft.com/yumrepos/edge
+https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
