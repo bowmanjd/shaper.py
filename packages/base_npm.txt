@@ -1,9 +1,11 @@
 @11ty/eleventy
 bash-language-server
 degit
+dockerfile-language-server-nodejs
 poor-mans-t-sql-formatter-cli
 prettier
 pyright
 quick-lint-js
 tsqllint
 vscode-langservers-extracted
+yaml-language-server
