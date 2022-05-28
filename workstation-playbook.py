@@ -22,12 +22,16 @@ def run() -> None:
     shaper.dnf.install_copr_repos(f"{BASE}/repos/workstation_copr_repos.txt")
     shaper.dnf.install_rpmfusion()
     shaper.dnf.install_dnf_packages(f"{BASE}/packages/base_dnf.txt")
-    shaper.dnf.install_dnf_packages(f"{BASE}/packages/workstation_dnf.txt")
+    shaper.npm.install_npm_packages(f"{BASE}/packages/base_npm.txt")
+    print("Installing Python packages...")
     shaper.localpy.install_pip_packages(f"{BASE}/packages/base_pip.txt")
+    print("Installing fonts...")
     shaper.fonts.install_fonts(f"{BASE}/fonts/workstation-fonts.txt")
+    print("Installing Rust...")
     shaper.download.install_with_remote_script(
         "rustup", "https://sh.rustup.rs", ["-y", "--no-modify-path"]
     )
+    print("Dotfiles...")
     shaper.dotfiles.dotfile_git_restore(
         "base", "git@github.com:bowmanjd/dotfiles-base.git"
     )
@@ -37,8 +41,10 @@ def run() -> None:
     shaper.dotfiles.dotfile_git_restore(
         "workstation", "git@github.com:bowmanjd/dotfiles-workstation.git"
     )
-    shaper.npm.install_npm_packages(f"{BASE}/packages/base_npm.txt")
+    print("Installing Go...")
+    shaper.golang.go_update()
     shaper.golang.install_go_packages(f"{BASE}/packages/base_go.txt")
+    print("Installing Cargo (Rust) packages...")
     shaper.rust.install_rust_packages(f"{BASE}/packages/base_rust.txt")
     shaper.minecraft.multimc_update()
 

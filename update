@@ -3,7 +3,7 @@
 SHAPER_DIR="$(dirname $0)"
 
 sudo dnf update --refresh -y
-volta run --npm latest npm update --global
+volta run --npm latest npm update --location=global
 ~/.venv/bin/pip install -Ur "$SHAPER_DIR/packages/base_pip.txt"
 ~/.venv/bin/virtualenv --upgrade-embed-wheels
 rustup update

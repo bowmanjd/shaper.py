@@ -53,7 +53,7 @@ def install_npm_packages(filename: str) -> None:
     install_volta()
     to_install = shaper.util.get_set_from_file(filename)
     existing = existing_npm()
-    cmd = [*NPM, "install", "--global"]
+    cmd = [*NPM, "install", "--location=global"]
     new_packages = to_install - existing
     for line in new_packages:
         subprocess.check_call(cmd + shlex.split(line))
