@@ -24,6 +24,7 @@ def install_rust_packages(filename: str) -> None:
     existing = existing_rust()
     to_install = shaper.util.get_set_from_file(filename)
     new_packages = to_install - existing
+    print(new_packages)
 
     for package in new_packages:
         cmd = ["cargo", "install", package]

@@ -1,9 +1,10 @@
 """Utility functions for managing local Go packages."""
 import re
-import shaper.download
 import subprocess
 import tempfile
 from pathlib import Path
+
+import shaper.download
 
 
 def multimc_update() -> None:
