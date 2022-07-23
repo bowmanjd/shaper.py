@@ -8,4 +8,5 @@ volta run --npm latest npm update --global
 ~/.venv/bin/virtualenv --upgrade-embed-wheels
 rustup update
 cargo install-update -a
+python -m shaper.golang
 gup update

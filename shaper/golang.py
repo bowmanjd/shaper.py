@@ -28,7 +28,9 @@ def go_update() -> None:
         for f in latest_go["files"]
         if f["os"] == "linux" and f["kind"] == "archive"
     }
-    if current_version != latest_version:
+    if current_version == latest_version:
+        print(f"Go is already at version {latest_version}")
+    else:
         filename = downloads[arch][0]
         sha256sum = downloads[arch][1]
 

@@ -1,0 +1,2 @@
+https://download.docker.com/linux/fedora/docker-ce.repo
+https://packages.microsoft.com/config/fedora/36/prod.repo

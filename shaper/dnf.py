@@ -98,9 +98,7 @@ def install_dnf_repos(filename: str) -> None:
     possible_urls = shaper.util.get_set_from_file(filename)
     to_install = possible_urls - existing_dnf_repos()
     if to_install:
-        subprocess.check_call(
-            [*DNF, "config-manager", "--add-repo", " ".join(to_install)]
-        )
+        subprocess.check_call([*DNF, "config-manager", "--add-repo", *to_install])
 
 
 def install_rpmfusion() -> None:

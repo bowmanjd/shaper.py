@@ -67,7 +67,7 @@ def download(url: str, destination: pathlib.Path) -> pathlib.Path:
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36"
         },
     )
     response = opener.open(request)
