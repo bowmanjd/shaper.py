@@ -18,6 +18,7 @@ def run() -> None:
     """Run commands in order."""
     shaper.dnf.install_rpm_keys(f"{BASE}/packages/rpm_keys.json")
     shaper.dnf.install_dnf_repos(f"{BASE}/repos/headless_repos.txt")
+    shaper.dnf.install_copr_repos(f"{BASE}/repos/headless_copr_repos.txt")
     shaper.dnf.install_dnf_packages(f"{BASE}/packages/base_dnf.txt")
     shaper.npm.install_npm_packages(f"{BASE}/packages/base_npm.txt")
     shaper.golang.go_update()
