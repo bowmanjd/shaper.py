@@ -1,4 +1,6 @@
 """Utility functions for managing local Rust packages with Cargo."""
+import os
+import pathlib
 import subprocess
 
 import shaper.util
@@ -10,6 +12,12 @@ def existing_rust() -> set:
     Returns:
         a set of package names
     """
+    HOME = pathlib.Path.home()
+    os.environ.update(
+        {
+            "PATH": f"{HOME}/.cargo/bin:{os.environ.get('PATH')}",
+        }
+    )
     cmd = ["cargo", "install", "--list"]
     packages = shaper.util.get_set_from_output(cmd)
     return {l.strip() for l in packages if l.startswith("  ")}

@@ -9,6 +9,7 @@ import shaper.util
 
 GOPATH = Path.home() / "go" / "bin"
 GOROOT = Path("/usr/local/go")
+GOEXE = GOROOT / "bin" / "go"
 
 ARCHES = {
     "aarch64": "arm64",
@@ -19,7 +20,11 @@ ARCHES = {
 
 
 def go_update() -> None:
-    current_version = subprocess.check_output(["go", "version"], text=True).split()[2]
+    try:
+        current_version = subprocess.check_output([GOEXE, "version"], text=True).split()[2]
+    except FileNotFoundError:
+        current_version = ""
+
     latest_go: dict = shaper.download.json_get("https://go.dev/dl/?mode=json")[0]
     latest_version = latest_go["version"]
     arch = ARCHES.get(platform.machine(), platform.machine())
@@ -65,8 +70,11 @@ def existing_go() -> set:
     Returns:
         a set of package names
     """
-    cmd = ["go", "version", "-m", GOPATH]
-    packages = shaper.util.get_set_from_output(cmd)
+    cmd = [GOEXE, "version", "-m", GOPATH]
+    try:
+        packages = shaper.util.get_set_from_output(cmd)
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        packages = set()
     return {
         line.replace("\tpath\t", "").strip()
         for line in packages
@@ -85,7 +93,7 @@ def install_go_packages(filename: str) -> None:
     new_packages = to_install - existing
 
     for package in new_packages:
-        cmd = ["go", "install", f"{package}@latest"]
+        cmd = [GOEXE, "install", f"{package}@latest"]
         subprocess.check_call(cmd)
 
 

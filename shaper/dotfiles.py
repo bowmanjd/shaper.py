@@ -104,7 +104,7 @@ def dotfile_git_clone(module: str, url: str) -> None:
         )
 
 
-def dotfile_git_restore(module: str, url: str) -> None:
+def dotfile_git_restore(module: str, url: str, force: bool = False) -> None:
     """Clone and restore using specified bare git repo.
 
     Args:
@@ -115,9 +115,17 @@ def dotfile_git_restore(module: str, url: str) -> None:
     if not git_dir.is_dir():
         try:
             dotfile_git_clone(module, url)
-            dotfile_git(module, ["checkout"])
+            cmd = ["checkout"]
+            if force:
+                cmd.append("-f")
+            dotfile_git(module, cmd)
         except subprocess.CalledProcessError:
             print(
                 "Deal with conflicting files, then run (possibly with -f "
                 f"flag if you are OK with overwriting)\ndtf {module} checkout"
             )
+
+if __name__ == "__main__":
+    import sys
+    dotfile_git_restore(sys.argv[1], sys.argv[2], True)
+
