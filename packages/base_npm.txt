@@ -1,7 +1,9 @@
 @11ty/eleventy
+@fsouza/prettierd
 bash-language-server
 degit
 dockerfile-language-server-nodejs
+eslint_d
 poor-mans-t-sql-formatter-cli
 prettier
 @fsouza/prettierd

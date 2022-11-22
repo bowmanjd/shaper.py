@@ -24,6 +24,7 @@ pynvim
 pytest
 reorder-python-imports
 setuptools
+sqlfluff
 virtualenv
 visidata
 wheel

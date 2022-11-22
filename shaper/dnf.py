@@ -138,4 +138,4 @@ def install_dnf_packages(filename: str) -> None:
     new_packages = to_install - existing
     if new_packages:
         cmd = [*DNF, "install", "-y", *new_packages]
-        subprocess.check_call(cmd)
+        subprocess.check_call(cmd, env={"ACCEPT_EULA": "Y"})

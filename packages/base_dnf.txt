@@ -6,6 +6,7 @@ diffutils
 direnv
 exa
 fd-find
+ffmpeg-free
 findutils
 fzf
 gcc
@@ -17,6 +18,7 @@ iputils
 jq
 libzip
 libzip-devel
+mssql-tools18
 ncurses
 neovim
 nmap
@@ -27,12 +29,12 @@ p7zip-plugins
 passwd
 pinentry
 procps-ng
+python3-Cython
+python3-devel
 python3-neovim
 python3-pexpect
 python3-pip
 python3-pynacl
-python3-devel
-python3-Cython
 qrencode
 ripgrep
 skopeo
