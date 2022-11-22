@@ -4,8 +4,12 @@ degit
 dockerfile-language-server-nodejs
 poor-mans-t-sql-formatter-cli
 prettier
+@fsouza/prettierd
 pyright
 quick-lint-js
+stylelint
+stylelint-config-standard
+stylelint-config-prettier
 tsqllint
 vscode-langservers-extracted
 yaml-language-server

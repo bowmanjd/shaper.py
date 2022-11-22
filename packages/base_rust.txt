@@ -1,5 +1,4 @@
 cargo-update
-deno
 dprint
 stylua
 xsv
