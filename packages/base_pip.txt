@@ -14,10 +14,12 @@ flake8-pytest-style
 fonttools[lxml,woff]
 git+https://github.com/bowmanjd/mssql-cli
 git+https://github.com/bowmanjd/mssql-scripter
+hatch
 iflake8
 isort
 pep8-naming
 pip
+pip-tools
 ptpython
 pylightxl
 pynvim
