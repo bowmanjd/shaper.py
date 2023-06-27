@@ -6,7 +6,7 @@ diffutils
 direnv
 exa
 fd-find
-ffmpeg-free
+ffmpeg
 findutils
 fzf
 gcc
@@ -38,7 +38,6 @@ python3-pynacl
 qrencode
 ripgrep
 skopeo
-starship
 sudo
 tar
 unzip

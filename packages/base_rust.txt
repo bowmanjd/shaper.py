@@ -3,3 +3,4 @@ dprint
 stylua
 qsv
 csvlens
+starship

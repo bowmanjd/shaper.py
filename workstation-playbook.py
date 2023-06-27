@@ -18,6 +18,8 @@ BASE = Path.home() / "shaper"
 def run() -> None:
     """Run commands in order."""
     shaper.dnf.install_rpm_keys(f"{BASE}/packages/rpm_keys.json")
+    shaper.dnf.install_dnf_repos(f"{BASE}/repos/headless_repos.txt")
+    shaper.dnf.install_dnf_repos(f"{BASE}/repos/headless_copr_repos.txt")
     shaper.dnf.install_dnf_repos(f"{BASE}/repos/workstation_repos.txt")
     shaper.dnf.install_copr_repos(f"{BASE}/repos/workstation_copr_repos.txt")
     shaper.dnf.install_rpmfusion()
